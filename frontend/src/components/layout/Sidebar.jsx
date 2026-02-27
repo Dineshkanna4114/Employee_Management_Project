@@ -1,17 +1,20 @@
 import { useState } from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
-import { LayoutDashboard, Users, Building2, Menu, X, Briefcase } from 'lucide-react'
+import { LayoutDashboard, Users, Building2, Menu, X, Briefcase, ShieldCheck } from 'lucide-react'
 import { useAuth } from '../../context/AuthContext'
 
 const navItems = [
     { path: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
     { path: '/employees', label: 'Employees', icon: Users },
     { path: '/departments', label: 'Departments', icon: Building2 },
+    { path: '/users', label: 'Users', icon: ShieldCheck, adminOnly: true },
 ]
 
 export default function Sidebar({ mobileOpen, onClose }) {
-    const { user } = useAuth()
+    const { user, isAdmin } = useAuth()
     const location = useLocation()
+
+    const filteredNavItems = navItems.filter(item => !item.adminOnly || isAdmin())
 
     return (
         <>
@@ -44,7 +47,7 @@ export default function Sidebar({ mobileOpen, onClose }) {
                 {/* Navigation */}
                 <nav className="sidebar-nav">
                     <div className="sidebar-section-title">Main Menu</div>
-                    {navItems.map(({ path, label, icon: Icon }) => (
+                    {filteredNavItems.map(({ path, label, icon: Icon }) => (
                         <NavLink
                             key={path}
                             to={path}

@@ -20,6 +20,15 @@ export const employeeAPI = {
     getDashboardStats: () => api.get('/employees/dashboard/stats'),
 }
 
+// Users
+export const userAPI = {
+    getAll: () => api.get('/users'),
+    getById: (id) => api.get(`/users/${id}`),
+    create: (data) => api.post('/users', data),
+    update: (id, data) => api.put(`/users/${id}`, data),
+    delete: (id) => api.delete(`/users/${id}`),
+}
+
 // Departments
 export const departmentAPI = {
     getAll: () => api.get('/departments'),

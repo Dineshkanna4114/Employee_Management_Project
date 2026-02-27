@@ -5,6 +5,7 @@ import LoginPage from './pages/auth/LoginPage'
 import Dashboard from './pages/dashboard/Dashboard'
 import EmployeeList from './pages/employees/EmployeeList'
 import DepartmentList from './pages/departments/DepartmentList'
+import UserList from './pages/users/UserList'
 
 function PrivateRoute({ children }) {
   const { user, loading } = useAuth()
@@ -31,6 +32,7 @@ function AppRoutes() {
         <Route path="dashboard" element={<Dashboard />} />
         <Route path="employees" element={<EmployeeList />} />
         <Route path="departments" element={<DepartmentList />} />
+        <Route path="users" element={<UserList />} />
       </Route>
       <Route path="*" element={<Navigate to="/dashboard" replace />} />
     </Routes>
